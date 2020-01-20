@@ -21,8 +21,8 @@ double objF(double *x, int n)
 {
     double value = 0;
     for(int i = 0; i < n; ++i) {
-        if(i > 1) value -= (x[i]*x[i]*x[i]);
-        else value += (x[i]*x[i]*x[i]);
+        if(i > 1) value -= pow(x[i], 5);
+        else value += pow(x[i], 5);
     }
     return value;
 }
@@ -38,7 +38,7 @@ void sA(double t, double t_min, double alpha, int n, double *x, double y, double
     y = objF(x_, n);
     while(t > t_min) {
         //printf("%d%c", (x[i] < 0)? 0:1, (i == n - 1)? '\n':' ');
-        for(i = 0; i < 120; ++i) {
+        for(i = 0; i < 20; ++i) {
             for(j = 0; j < n; ++j) {
                 for(k = 0; k < n; ++k) 
                     printf("%lf ", x[k]);
@@ -49,14 +49,14 @@ void sA(double t, double t_min, double alpha, int n, double *x, double y, double
                     x[j] = x_[j];
                     y = y_;
                     continue;
-                } else {
+                } /*else {
                     ap = min(exp((y - y_)/t), 1);
                     if(rndF(0, 1) < ap) {
                         x[j] = x_[j];
                         y = y_;
                         continue;
                     }
-                } 
+                }*/ 
                 x_[j] = x[j];
             }
         }
