@@ -49,14 +49,14 @@ void sA(double t, double t_min, double alpha, int n, double *x, double y, double
                     x[j] = x_[j];
                     y = y_;
                     continue;
-                } /*else {
+                } else {
                     ap = min(exp((y - y_)/t), 1);
                     if(rndF(0, 1) < ap) {
                         x[j] = x_[j];
                         y = y_;
                         continue;
                     }
-                }*/ 
+                }
                 x_[j] = x[j];
             }
         }
