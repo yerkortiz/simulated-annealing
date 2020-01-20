@@ -17,6 +17,10 @@
 #include "rnd_.h"
 
 /* objF 1100 */
+double min(double a, double b)
+{
+    return (a > b)? b : a;
+}
 double objF(double *x, int n)
 {
     double value = 0;
@@ -37,38 +41,25 @@ void sA(double t, double t_min, double alpha, int n, double *x, double y, double
     for(i = 0; i < n; ++i) x[i] = x0[i];
     y = y0;
     while(t > t_min) {
-        for(int i = 0; i < n; ++i)
-            printf("%lf ", x[i]);
-            //printf("%d%c", (x[i] < 0)? 1:0, (i == n - 1)? '\n':' ');
-        printf(" %lf\n", y);
-        for(i = 0; i < 100; ++i) {
-            /* local change */
+        for(i = 0; i < 20; ++i) {
+            /* local changes */
             for(j = 0; j < n; ++j) x_[j] = x[i] + rndF(-delta, delta);
             y_ = objF(x_, n);
             if(y_ > y) {
                 for(j = 0; j < n; ++j) x[j] = x_[j];
                 y = y_;
-                continue;
+                //continue;
             } else {
-                ap = exp((y - y_)/t);
-                if(ap < rndF(0, 1)) {
+                ap = min(exp((y - y_)/t), 1);
+                if(ap > rndF(0, 1)) {
                     for(j = 0; j < n; ++j) x[j] = x_[j];
                     y = y_;
-                    continue;
+                    //continue;
                 }
             }
-            /* global change */
-            /*
-            for(j = 0; j < n; ++j) x_[j] = rndF(x[i] * t / 10 - delta, x[i] * t / 10 + delta);
-            y_ = objF(x_, n);
-            ap = exp((objF(x, n) - objF(x_, n))/t); 
-            if(ap > rndF(0, 1)) continue;
-            //if(y_ > y) {
-                for(j = 0; j < n; ++j) x[j] = x_[j];
-                y = y_;
-                break;
-            //}
-            */   
+            for(int i = 0; i < n; ++i) printf("%lf ", x[i]);
+                //printf("%d%c", (x[i] < 0)? 1:0, (i == n - 1)? '\n':' ');
+            printf(" %lf\n", y);
         }
         t *= alpha;
     }
