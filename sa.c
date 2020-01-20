@@ -37,24 +37,27 @@ void sA(double t, double t_min, double alpha, int n, double *x, double y, double
     }
     y = objF(x_, n);
     while(t > t_min) {
-        for(i = 0; i < n; ++i) 
-            printf("%lf ", x[i]);
-        printf(" %lf\n", y);
         //printf("%d%c", (x[i] < 0)? 0:1, (i == n - 1)? '\n':' ');
         for(i = 0; i < 120; ++i) {
             for(j = 0; j < n; ++j) {
+                for(k = 0; k < n; ++k) 
+                    printf("%lf ", x[k]);
+                printf(" %lf\n", y);
                 x_[j] = x[j] + rndF(-delta, delta);
                 y_ = objF(x_, n);
                 if(y_ > y) {
                     x[j] = x_[j];
                     y = y_;
+                    continue;
                 } else {
                     ap = min(exp((y - y_)/t), 1);
-                    if(rndF(0, 1 < ap)) {
+                    if(rndF(0, 1) < ap) {
                         x[j] = x_[j];
                         y = y_;
+                        continue;
                     }
-                }
+                } 
+                x_[j] = x[j];
             }
         }
         t *= alpha;
