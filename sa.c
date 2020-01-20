@@ -43,7 +43,7 @@ void sA(double t, double t_min, double alpha, int n, double *x, double y, double
     while(t > t_min) {
         for(i = 0; i < 20; ++i) {
             for(int i = 0; i < n; ++i) //printf("%lf ", x[i]);
-                printf("%d%c", (x[i] < 0)? 1:0, (i == n - 1)? '\n':' ');
+                printf("%d%c", (x[i] < 0)? 0:1, (i == n - 1)? '\n':' ');
             //printf(" %lf\n", y);
             /* local changes */
             for(j = 0; j < n; ++j) x_[j] = x[i] + rndF(-delta, delta);
