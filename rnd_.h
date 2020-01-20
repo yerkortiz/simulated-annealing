@@ -14,3 +14,7 @@ float rndF(float a, float b)
     float scale = rand() / (float) RAND_MAX; 
     return a + scale * (b - a);
 }
+double min(double a, double b)
+{
+    return (a > b)? b : a;
+}
