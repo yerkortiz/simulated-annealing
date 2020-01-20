@@ -36,12 +36,15 @@ void sA(double t, double t_min, double alpha, int n, double *x, double y, double
     double *x0 = malloc(n * sizeof(double));
     double *x_ = malloc(n * sizeof(double));
     double y_, ap, y0;
-    for(i = 0; i < n; ++i) x0[i] = rndF(-1, 1);
+    for(i = 0; i < n; ++i) x0[i] = rndF(-1, 0);
     y0 = objF(x0, n);
     for(i = 0; i < n; ++i) x[i] = x0[i];
     y = y0;
     while(t > t_min) {
         for(i = 0; i < 20; ++i) {
+            for(int i = 0; i < n; ++i) //printf("%lf ", x[i]);
+                printf("%d%c", (x[i] < 0)? 1:0, (i == n - 1)? '\n':' ');
+            //printf(" %lf\n", y);
             /* local changes */
             for(j = 0; j < n; ++j) x_[j] = x[i] + rndF(-delta, delta);
             y_ = objF(x_, n);
@@ -49,7 +52,7 @@ void sA(double t, double t_min, double alpha, int n, double *x, double y, double
                 for(j = 0; j < n; ++j) x[j] = x_[j];
                 y = y_;
                 //continue;
-            } else {
+            } /* else {
                 ap = min(exp((y - y_)/t), 1);
                 if(ap > rndF(0, 1)) {
                     for(j = 0; j < n; ++j) x[j] = x_[j];
@@ -57,9 +60,7 @@ void sA(double t, double t_min, double alpha, int n, double *x, double y, double
                     //continue;
                 }
             }
-            for(int i = 0; i < n; ++i) printf("%lf ", x[i]);
-                //printf("%d%c", (x[i] < 0)? 1:0, (i == n - 1)? '\n':' ');
-            printf(" %lf\n", y);
+            */
         }
         t *= alpha;
     }
