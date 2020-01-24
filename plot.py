@@ -18,8 +18,11 @@ l = len(x)//4
 for i in range(l):
     sums[i % 4] += x[i]
 proms = []
+y = []
+for i in range(len(sums)):
+    y.append('x' + str(i + 1))
 for i in sums:
-    proms.append(i)
-np.asarray(proms)
+    proms.append(i/l)
+#falta graficar y ya está
 
 
