@@ -36,6 +36,7 @@ void sA(double t, double t_min, double alpha, int n, double *x, double y, double
         x[i] = rndF(-1, 0);
         x_[i] = x[i];
     }
+    x[0] = rnf(0.001, 1);
     y = objF(x_, n);
     while(t > t_min) {
         for(i = 0; i < 20; ++i) {
