@@ -23,5 +23,5 @@ for i in range(len(sums)):
     y.append('x' + str(i + 1))
 for i in sums:
     proms.append(i/l)
-
+print(proms)
 

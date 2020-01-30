@@ -16,8 +16,8 @@
 #include <stdlib.h>
 #include "rnd_.h"
 
-/* objF 1100 */
-int z[] = {1, 1, 0 , 0};
+/* objF */
+int z[] = {1, 1, 0, 0};
 double objF(double *x, int n)
 {
     double value = 0;
@@ -33,10 +33,9 @@ void sA(double t, double t_min, double alpha, int n, double *x, double y, double
     double *x_ = malloc(n * sizeof(double));
     double y_, ap;
     for(i = 0; i < n; ++i){
-        x[i] = rndF(-1, 0);
+        x[i] = rndF(-1, -0.000001);
         x_[i] = x[i];
     }
-    x[0] = rndF(0.001, 1);
     y = objF(x_, n);
     while(t > t_min) {
         for(i = 0; i < 20; ++i) {
@@ -49,7 +48,14 @@ void sA(double t, double t_min, double alpha, int n, double *x, double y, double
                     x[j] = x_[j];
                     y = y_;
                     continue;
-                }
+                } 
+                /* 
+                else if (rndF(0, 1) <= exp((y - y_)/t)) {
+                    x[j] = x_[j];
+                    y = y_;
+                    continue;
+                } 
+                */
                 x_[j] = x[j];
             }
         }
