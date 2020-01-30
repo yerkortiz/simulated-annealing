@@ -13,10 +13,10 @@ for i in data:
         a = ''
         continue
     a += i
-sums = [0]*4
-l = len(x)//4
+sums = [0]*5
+l = len(x)//5
 for i in range(l):
-    sums[i % 4] += x[i]
+    sums[i % 5] += x[i]
 proms = []
 y = []
 for i in range(len(sums)):

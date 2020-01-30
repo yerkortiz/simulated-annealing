@@ -33,7 +33,7 @@ void sA(double t, double t_min, double alpha, int n, double *x, double y, double
     double *x_ = malloc(n * sizeof(double));
     double y_, ap;
     for(i = 0; i < n; ++i){
-        x[i] = rndF(-1, -0.000001);
+        x[i] = rndF(-10, -0.000001);
         x_[i] = x[i];
     }
     y = objF(x_, n);
